@@ -17,9 +17,9 @@ LOOKER DASHBOARD: https://lookerstudio.google.com/s/l9wtNOqLFUI
 
 # 1. **Overview** <a class="anchor" id="Overview"></a> 
 ## **Problem Objective** 
- You have been asked to focus on one of Bellabeatís products and analyze smart device data to gain insight into how consumers are using their smart devices. The insights you discover will then help guide marketing strategy for the company. 
+ You have been asked to focus on one of Bellabeat‚Äôs products and analyze smart device data to gain insight into how consumers are using their smart devices. The insights you discover will then help guide marketing strategy for the company. 
  
- Sröen asks you to analyze smart device usage data in order to gain insight into how consumers use non-Bellabeat smart
+ Sr≈°en asks you to analyze smart device usage data in order to gain insight into how consumers use non-Bellabeat smart
 devices. She then wants you to select one Bellabeat product to apply these insights to in your presentation. These
 questions will guide your analysis:
 1. What are some trends in smart device usage?
@@ -37,7 +37,7 @@ You will produce a report with the following deliverables:
 
 ## **Products of Bellabeat**
 * **Bellabeat app:** The Bellabeat app provides users with health data related to their activity, sleep, stress,menstrual cycle, and mindfulness habits. This data can help users better understand their current habits and make healthy decisions. The Bellabeat app connects to their line of smart wellness products.
-* **Leaf:** Bellabeatís classic wellness tracker can be worn as a bracelet, necklace, or clip. The Leaf tracker connects to the Bellabeat app to track activity, sleep, and stress.
+* **Leaf:** Bellabeat‚Äôs classic wellness tracker can be worn as a bracelet, necklace, or clip. The Leaf tracker connects to the Bellabeat app to track activity, sleep, and stress.
 * **Time:** This wellness watch combines the timeless look of a classic timepiece with smart technology to track user activity, sleep, and stress. The Time watch connects to the Bellabeat app to provide you with insights into yourdaily wellness.
 * **Spring:** This is a water bottle that tracks daily water intake using smart technology to ensure that you are appropriately hydrated throughout the day. The Spring bottle connects to the Bellabeat app to track your hydration levels.
 * **Bellabeat membership:** Bellabeat also offers a subscription-based membership program for users.Membership gives users 24/7 access to fully personalized guidance on nutrition, activity, sleep, health and beauty, and mindfulness based on their lifestyle and goals.
@@ -51,7 +51,7 @@ You will produce a report with the following deliverables:
 To identify trends and insights in smart devices user activity that can be related to the company's products to support marketing strategy
 
 >*2. Stakeholders*
-* Uröka Sröen - Bellabeat cofounder and Chief Creative Officer 
+* Ur≈°ka Sr≈°en - Bellabeat cofounder and Chief Creative Officer 
 * Sando Mur - Bellabeat cofounder and key member of Bellabeat executive team 
 * Bellabeat Marketing Analytics team
 
@@ -95,7 +95,7 @@ The following Table shows the consised information.
 | minuteSleep_merged             | Date and minute of that day within a defined  sleep period in mm/dd/yy hh:mm:ss format;Example: 04/20/2018 10:15:30 ? 04/20/201810:15:00 04/20/2018 10:16:30 ? 04/20/201810:16:00   ;  Value indicating the sleep state. 1 = asleep, 2 = restless, 3 = awake  and unique log id                      | 4              | 188521      | Long                 |
 | minuteStepsNarrow_merged       | Total number of steps taken.                                                                                                                                                                                                                                                                         | 3              | 1325580     | Long                 |
 | minuteStepsWide_merged         | Total number of steps taken in each minute. Example: Steps05 = steps taken in fifth minute  of the hour.                                                                                                                                                                                             | 62             | 21645       | Wide                 |
-| sleepDay_merged                | Date on which the sleep event started. ;Number of recorded sleep records for that day. ; Total number of minutes classified as being  ìasleepî sum total of light, deep, and REM  sleep).; Total minutes spent in bed, including awake,  light, deep, and REM sleep, during a defined  sleep record. | 5              | 413         | Long                 |
+| sleepDay_merged                | Date on which the sleep event started. ;Number of recorded sleep records for that day. ; Total number of minutes classified as being  ‚Äúasleep‚Äù sum total of light, deep, and REM  sleep).; Total minutes spent in bed, including awake,  light, deep, and REM sleep, during a defined  sleep record. | 5              | 413         | Long                 |
 | weightLogInfo_merged           | Contains data values pertaining to each tracked weight measurement                                                                                                                                                                                                                                   | 8              | 67          | Long                 |
 
 ## **Part 3: PROCESS**<a class="anchor" id="PROCESS"></a> 
@@ -158,7 +158,7 @@ I have run a code to get the no. of unique users in each table and checked the t
 
 By checking if any other data has been given about manual or automatic entry / logging , several activities was found and viewed for any correlation.
 
-By Fitbitís SmartTrack feature activities can be tracked in 4 ways:
+By Fitbit‚Äôs SmartTrack feature activities can be tracked in 4 ways:
 
 *tracker* = activity logs are those created using the multisport exercise mode on a Fitbit device.
 
@@ -169,8 +169,8 @@ By Fitbitís SmartTrack feature activities can be tracked in 4 ways:
 *mobile_run* activity logs are created after completing a MobileRun.
 
 From the data provided, the following data are related to this issue 
-1.      LoggedActivitiesDistance - Total kilometres from logged activities. - Daily Activity
-2.      IsManualReport - If the data for this weight in was done manually (TRUE), or if data was measured and synched directly to Fitbit.com from a connected scale (FALSE) - Weight Log Minutes
+1. LoggedActivitiesDistance - Total kilometres from logged activities. - Daily Activity
+2. IsManualReport - If the data for this weight in was done manually (TRUE), or if data was measured and synched directly to Fitbit.com from a connected scale (FALSE) - Weight Log Minutes
 
 (Checked using Filter and sort in Excel)
 
