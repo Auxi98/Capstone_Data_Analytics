@@ -4,27 +4,147 @@ author: "Auxillia"
 date: "2023-08-02"
 output: html_document
 ---
+Task 1: To load the necessary packages
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+library(tidyverse)
+library(data.table)
+
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Task 2: To view the files in the data source and their names and file types
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
+```{r}
+
+# Set the working directory to the folder containing the CSV files
+setwd("......./Fitabase Data 4.12.16-5.12.16")
+
+# List all CSV files in the directory
+csv_files <- list.files(pattern = "\\.csv$", full.names = TRUE)
+
+# Create a list of data frames from the CSV files
+data_frames_list <- lapply(csv_files, read_csv)
+
+# Check the column names in each data frame
+lapply(data_frames_list, names)
+
+# Check the structure (data types) of each data frame in the data_frames_list
+lapply(data_frames_list, str)
 ```
 
-## Including Plots
+Task 2: To correctly read the csv files in the proper datatype
 
-You can also embed plots, for example:
+```{r}
+# Read the CSV files using fread and store them in a list of data.tables
+data_tables_list <- lapply(csv_files, fread)
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+dailyActivity_merged <- read_csv("dailyActivity_merged.csv", 
+                                 col_types = cols(ActivityDate = col_date(format = "%m/%d/%Y")),
+                                 na = "NA")
+dailyCalories_merged <- read_csv("dailyCalories_merged.csv", 
+                                 col_types = cols(ActivityDay = col_date(format = "%m/%d/%Y")),
+                                 na = "NA")
+dailyIntensities_merged <- read_csv("dailyIntensities_merged.csv", 
+                                    col_types = cols(ActivityDay = col_date(format = "%m/%d/%Y")),
+                                    na = "NA")
+dailySteps_merged <- read_csv("dailySteps_merged.csv", 
+                              col_types = cols(ActivityDay = col_date(format = "%m/%d/%Y")), 
+                              na = "NA")
+heartrate_seconds_merged <- read_csv("heartrate_seconds_merged.csv", 
+                                     col_types = cols(Time = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")), 
+                                     na = "NA")
+hourlyCalories_merged <- read_csv("hourlyCalories_merged.csv", 
+                                  col_types = cols(ActivityHour = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")), 
+                                  na = "NA")
+hourlyIntensities_merged <- read_csv("hourlyIntensities_merged.csv", 
+                                     col_types = cols(ActivityHour = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")), 
+                                     na = "NA")
+hourlySteps_merged <- read_csv("hourlySteps_merged.csv", 
+                               col_types = cols(ActivityHour = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")), 
+                               na = "NA")
+minuteCaloriesNarrow_merged <- read_csv("minuteCaloriesNarrow_merged.csv", 
+                                        col_types = cols(ActivityMinute = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")), 
+                                        na = "NA")
+minuteCaloriesWide_merged <- read_csv("minuteCaloriesWide_merged.csv", 
+                                      col_types = cols(ActivityHour = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")), 
+                                      na = "NA")
+minuteIntensitiesNarrow_merged <- read_csv("minuteIntensitiesNarrow_merged.csv", 
+                                           col_types = cols(ActivityMinute = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")),
+                                           na = "NA")
+minuteIntensitiesWide_merged <- read_csv("minuteIntensitiesWide_merged.csv", 
+                                         col_types = cols(ActivityHour = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")), 
+                                         na = "NA")
+minuteMETsNarrow_merged <- read_csv("minuteMETsNarrow_merged.csv", 
+                                    col_types = cols(ActivityMinute = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")), 
+                                    na = "NA")
+minuteSleep_merged <- read_csv("minuteSleep_merged.csv", 
+                               col_types = cols(date = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")), 
+                               na = "NA")
+minuteStepsNarrow_merged <- read_csv("minuteStepsNarrow_merged.csv", 
+                                     col_types = cols(ActivityMinute = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")), 
+                                     na = "NA")
+minuteStepsWide_merged <- read_csv("minuteStepsWide_merged.csv", 
+                                   col_types = cols(ActivityHour = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")), 
+                                   na = "NA")
+sleepDay_merged <- read_csv("sleepDay_merged.csv", 
+                            col_types = cols(SleepDay = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")), 
+                            na = "NA")
+weightLogInfo_merged <- read_csv("weightLogInfo_merged.csv", 
+                                 col_types = cols(Date = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")), 
+                                 na = "NA")
+
+# List of file names to save the data.tables as CSV
+csv_files <- list(dailyActivity_merged,
+                    dailyCalories_merged,
+                    dailyIntensities_merged,
+                    dailySteps_merged,
+                    heartrate_seconds_merged,
+                    hourlyCalories_merged,
+                    hourlyIntensities_merged,
+                    hourlySteps_merged,
+                    minuteCaloriesNarrow_merged,
+                    minuteCaloriesWide_merged,
+                    minuteIntensitiesNarrow_merged,
+                    minuteIntensitiesWide_merged,
+                    minuteMETsNarrow_merged,
+                    minuteSleep_merged,
+                    minuteStepsNarrow_merged,
+                    minuteStepsWide_merged,
+                    sleepDay_merged,
+                    weightLogInfo_merged
+)
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+Task 3: To remove duplicated rows in all files
+
+```{r}
+# Remove duplicates from each data frame in the list
+df_list_deduped <- lapply(csv_files, function(df) df %>% distinct())
+
+# Print a summary of the deleted rows
+deleted_rows <- sapply(df_list_deduped, function(df) nrow(df) - nrow(csv_files))
+print(deleted_rows)
+
+```
+
+Task 4: To save the correct formatted as new csv files
+
+```{r}
+# Function to write a dataframe to a CSV file with a index and dataframe name
+write_dataframe_to_csv <- function(df, prefix, df_name) {
+  file_name <- paste0(i, "_", df_name, ".csv")
+  write.csv(df, file_name, row.names = FALSE)
+}
+
+# Loop through the list and write each dataframe to a CSV file with the prefix "no" and dataframe name
+for (i in seq_along(csv_file_list)) {
+  df_name <- names(csv_file_list)[i]
+  write_dataframe_to_csv(csv_file_list[[i]], "no", df_name)
+}
+```
+
+
