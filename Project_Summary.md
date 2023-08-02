@@ -55,7 +55,7 @@ To identify trends and insights in smart devices user activity that can be relat
 * Sando Mur - Bellabeat cofounder and key member of Bellabeat executive team 
 * Bellabeat Marketing Analytics team
 
-## **Part 2: PREPARE**<a class="anchor" id="PREPARE"></a> 
+## **Part 2: PREPARE** <a class="anchor" id="PREPARE"></a> 
 
 **Key tasks**
 
@@ -98,7 +98,7 @@ The following Table shows the consised information.
 | sleepDay_merged                | Date on which the sleep event started. ;Number of recorded sleep records for that day. ; Total number of minutes classified as being  “asleep” sum total of light, deep, and REM  sleep).; Total minutes spent in bed, including awake,  light, deep, and REM sleep, during a defined  sleep record. | 5              | 413         | Long                 |
 | weightLogInfo_merged           | Contains data values pertaining to each tracked weight measurement                                                                                                                                                                                                                                   | 8              | 67          | Long                 |
 
-## **Part 3: PROCESS**<a class="anchor" id="PROCESS"></a> 
+## **Part 3: PROCESS** <a class="anchor" id="PROCESS"></a> 
 
 **Key tasks**
 
@@ -115,7 +115,7 @@ Since we have to run separate queries on each table for data manipulation (SQL),
 
 To make it consistent I have renamed the date columns as "Date" and Datetime columns as "DateTime". Further, I have separated the datetime column into 2 separate columns called 'Date' and 'Time' which makes it easier for Table join.
 
-## **Part 4: ANALYZE**<a class="anchor" id="ANALYZE"></a> 
+## **Part 4: ANALYZE** <a class="anchor" id="ANALYZE"></a> 
 Since we have to run separate queries on each table for data manipulation (SQL),I have preferred to use R for the analysis.
 
 **Key tasks**
