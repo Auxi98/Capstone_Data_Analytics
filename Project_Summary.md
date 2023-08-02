@@ -15,7 +15,7 @@ In this case study, you will perform many real-world tasks of a junior data anal
 * [**6. Part 5: SHARE**](#SHARE)
 * [**7. Part 5: ACT**](#ACT)
 
-# 1. **OVERVIEW** <a class="anchor" id="Overview"></a> 
+# **OVERVIEW** <a class="anchor" id="Overview"></a> 
 ## **Problem Objective** 
  You have been asked to focus on one of Bellabeat’s products and analyze smart device data to gain insight into how consumers are using their smart devices. The insights you discover will then help guide marketing strategy for the company. 
  
