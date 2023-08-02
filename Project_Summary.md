@@ -15,7 +15,7 @@ In this case study, you will perform many real-world tasks of a junior data anal
 * [**6. Part 5: SHARE**](#SHARE)
 * [**7. Part 5: ACT**](#ACT)
 
-# 1. **Overview** <a class="anchor" id="Overview"></a> 
+# 1. **OVERVIEW** <a class="anchor" id="Overview"></a> 
 ## **Problem Objective** 
  You have been asked to focus on one of Bellabeat’s products and analyze smart device data to gain insight into how consumers are using their smart devices. The insights you discover will then help guide marketing strategy for the company. 
  
@@ -55,7 +55,7 @@ To identify trends and insights in smart devices user activity that can be relat
 * Sando Mur - Bellabeat cofounder and key member of Bellabeat executive team 
 * Bellabeat Marketing Analytics team
 
-## **Part 2: PREPARE** <a class="anchor" id="PREPARE"></a> 
+# **Part 2: PREPARE** <a class="anchor" id="PREPARE"></a> 
 
 **Key tasks**
 
@@ -98,7 +98,7 @@ The following Table shows the consised information.
 | sleepDay_merged                | Date on which the sleep event started. ;Number of recorded sleep records for that day. ; Total number of minutes classified as being  “asleep” sum total of light, deep, and REM  sleep).; Total minutes spent in bed, including awake,  light, deep, and REM sleep, during a defined  sleep record. | 5              | 413         | Long                 |
 | weightLogInfo_merged           | Contains data values pertaining to each tracked weight measurement                                                                                                                                                                                                                                   | 8              | 67          | Long                 |
 
-## **Part 3: PROCESS** <a class="anchor" id="PROCESS"></a> 
+# **Part 3: PROCESS** <a class="anchor" id="PROCESS"></a> 
 
 **Key tasks**
 
@@ -115,7 +115,7 @@ Since we have to run separate queries on each table for data manipulation (SQL),
 
 To make it consistent I have renamed the date columns as "Date" and Datetime columns as "DateTime". Further, I have separated the datetime column into 2 separate columns called 'Date' and 'Time' which makes it easier for Table join.
 
-## **Part 4: ANALYZE** <a class="anchor" id="ANALYZE"></a> 
+# **Part 4: ANALYZE** <a class="anchor" id="ANALYZE"></a> 
 Since we have to run separate queries on each table for data manipulation (SQL),I have preferred to use R for the analysis.
 
 **Key tasks**
@@ -198,12 +198,12 @@ The sorted files are imported into Google Looker for further data visualization.
 
 I have studied the timings of the records for individual functions to get better insights on when the users are utilizing them.**(Done in LOOKER)**
 
-## **Part 5: SHARE** <a class="anchor" id="SHARE"></a> 
+# **Part 5: SHARE** <a class="anchor" id="SHARE"></a> 
 I have done the data visualization in Looker and made a dashboard to be shared.
 https://lookerstudio.google.com/s/l9wtNOqLFUI
 
 I have made use of control elements so that the user can filter and view for themselves in Google Looker.
-## **Part 6: ACT** <a class="anchor" id="ACT"></a> 
+# **Part 6: ACT** <a class="anchor" id="ACT"></a> 
 
 > **Concluding Insights**
 1) The heartrate tracker is used less even though people have used the automatic step tracker
