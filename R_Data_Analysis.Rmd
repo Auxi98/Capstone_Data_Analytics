@@ -1,0 +1,116 @@
+---
+title: "R_Data_Analysis"
+author: "Auxillia"
+date: "2023-08-02"
+output: html_document
+---
+##Task 1: To load the necessary packages
+
+```{r}
+library(tidyverse)
+library(data.table)
+library(skimr)
+
+```
+
+##Task 2: Load the formatted csv file into a dataframe
+
+```{r}
+# Set the working directory with the formatted files
+setwd("..........\\Fitabase Data 4.12.16-5.12.16\\CleanData")
+
+# Create a vector of file names for the 18 CSV files
+csv_files <- list.files(pattern = "\\.csv$", full.names = TRUE)
+
+# Read the CSV files using fread and store them in a list of data.tables
+list <- lapply(csv_files, fread)
+
+```
+
+##Task 3: Analysis 1
+
+Summary - To get an idea of the information stored in each table
+
+```{r}
+# Function to apply skim_without_charts() to each dataframe in the list
+apply_skim_without_charts <- function(df_list) {
+  summary_list <- lapply(df_list, skim_without_charts)
+  return(summary_list)
+}
+
+# Apply skim_without_charts() to each dataframe in the list
+summary_list <- apply_skim_without_charts(list)
+
+# Print the summaries of each dataframe
+for (i in seq_along(summary_list)) {
+  df_name <- names(list)[i]
+  cat("Summary for DataFrame:", df_name, "\n")
+  print(summary_list[[i]])
+  cat("\n")
+}
+```
+
+##Task 4: Analysis 3
+
+User retention -  To understand users across various functions:
+
+To get the recorders sorted by order and removing any '0' values recorded.Only 4 files are needed for the analysis refer in the project summary
+
+Since the time was not in the correct format I have changed it. 
+
+```{r}
+# Convert "time" column to the time data type (format: "H:M:S")
+list[[14]]$time <- as.ITime(list[[14]]$time, format = "%H:%M:%S")
+
+list <- lapply(list, function(df) {
+  df$time <- as.ITime(df$time, format = "%H:%M:%S")
+  return(df)
+})
+```
+
+To get the sorted files and save it as csv file to import it into Google Looker for Data Visulization
+
+```{r}
+#To get the user information about Step Traker
+steps_user <- list[[8]] %>%  ##08_hourlySteps_merged.csv
+  group_by(Id, date, time) %>%
+  mutate(No_of_records = n()) %>%
+  ungroup() %>%
+  filter(StepTotal > 0)
+  
+
+print(steps_user)
+
+#To get the user information about Weight Traker
+weight_user <- list[[18]] %>%  ##18_weightLogInfo_merged.csv
+  group_by(Id, date, time) %>%
+  mutate(No_of_records = n()) %>%
+  ungroup() %>%
+  filter(WeightKg > 0)
+  
+
+print(weight_user)
+
+#To get the user information about Sleep Traker
+sleep_user <- list[[14]] %>%  ##14_minuteSleep_merged.csv
+  group_by(Id, date, time) %>%
+  mutate(No_of_records = n()) %>%
+  ungroup() %>%
+  filter(value > 0)
+
+
+print(sleep_user)
+
+
+#To get the user information about Heartrate Traker
+heartrate_user <- list[[05]] %>%  ##05_heartrate_seconds_merged.csv
+  group_by(Id, date, time) %>%
+  mutate(No_of_records = n()) %>%
+  ungroup() %>%
+  filter(Value > 0)
+
+
+print(heartrate_user)
+```
+
+
