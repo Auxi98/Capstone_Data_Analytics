@@ -1,0 +1,117 @@
+---
+title: "R_Data_Organize"
+author: "Auxillia"
+date: "2023-08-02"
+output: html_document
+---
+
+##Task 1: To load the necessary packages
+
+```{r}
+library(tidyverse)
+library(data.table)
+
+```
+
+##Task 2: Load the formatted csv file into a dataframe
+
+```{r}
+# Set the working directory with the formatted files
+setwd("..........\\Fitabase Data 4.12.16-5.12.16\\CleanData")
+
+# Create a vector of file names for the 18 CSV files
+csv_files <- list.files(pattern = "\\.csv$", full.names = TRUE)
+
+# Read the CSV files using fread and store them in a list of data.tables
+list <- lapply(csv_files, fread)
+```
+
+##Task 3: To correctly identify the date & datetime columns (Since each file have different names)and change it to consistent names and create 2 new columns called 'date' and 'time' from datetime columns
+
+```{r}
+# Function to identify date or datetime column in a table
+check_column_format <- function(df) {
+  date_cols <- sapply(df, function(x) inherits(x, "Date"))
+  datetime_cols <- sapply(df, function(x) inherits(x, "POSIXct"))
+  
+  format_info <- list(
+    date_columns = names(df)[date_cols],
+    datetime_columns = names(df)[datetime_cols]
+  )
+  return(format_info)
+}
+
+# Check format for each table in the dataframe list
+format_info_list <- lapply(list, check_column_format)
+
+#Rename the date and datetime columns in each table.
+rename_columns <- function(df, date_col, datetime_col) {
+  if (!is.null(datetime_col) && length(datetime_col) > 0) {
+    # Split datetime column into 'date' and 'time'
+    df$date <- as.Date(df[[datetime_col[1]]])
+    df$time <- format(df[[datetime_col[1]]], "%H:%M:%S")
+    
+    # Rename datetime column
+    names(df)[names(df) == datetime_col[1]] <- "datetime"
+  }
+  
+  if (!is.null(date_col) && length(date_col) > 0) {
+    # Rename date column as 'date'
+    names(df)[names(df) %in% date_col] <- "date"
+  }
+  
+  return(df)
+}
+
+#  Use Map to apply the function to each dataframe in the list
+list_new <- Map(rename_columns, list,
+                       date_col = lapply(format_info_list, `[[`, "date_columns"),
+                       datetime_col = lapply(format_info_list, `[[`, "datetime_columns"))
+```
+
+##Task 4: To check it has changed correctly
+
+```{r}
+
+# Function to check date, time and datetime column in a table
+check_column_format <- function(df) {
+  date_cols <- sapply(df, function(x) inherits(x, "Date"))
+  datetime_cols <- sapply(df, function(x) inherits(x, "POSIXct"))
+  time_cols <- sapply(df, function(x) inherits(x, "%H:%M:%S"))
+  
+  format_info <- list(
+    date_columns = names(df)[date_cols],
+    time_columns = names(df)[time_cols],
+    datetime_columns = names(df)[datetime_cols]
+    
+  )
+  return(format_info)
+}
+
+# Check format for each table in the data frame list
+check_info_list <- lapply(list_new, check_column_format)
+```
+
+##Task 5: Correct any mistakes
+```{r}
+#Since one of the column names was already named 'date' it was manually changed 
+names(list_new[[14]])[names(list_new[[14]]) == "datetime"] <- "date"
+```
+
+##Task 6: Saving the organized file as csv files
+```{r}
+# Function to write a data.table to a CSV file with a prefix and original name
+write_datatable_to_csv <- function(list_new, prefix, df_name) {
+  file_name <- paste0(prefix, "_", df_name, ".csv")
+  fwrite(list_new, file_name)
+}
+
+# Loop through the list and write each data.table to a CSV file with the prefix "no" and original name
+for (i in seq_along(list_new)) {
+  df_name <- basename(csv_files[i])
+  prefix <- sprintf("no%d", i)
+  write_datatable_to_csv(list_new[[i]], prefix, df_name)
+}
+```
+
+
